@@ -1,14 +1,15 @@
 from http.server import BaseHTTPRequestHandler, HTTPServer
 import json
-from views import get_all_animals, get_single_animal, create_animal
-from views import get_all_locations, get_single_location, create_location
-from views import get_all_employees, get_single_employee, create_employee
-from views import get_all_customers, get_single_customer, create_customer
 
-from views.animal_requests import delete_animal, update_animal
-from views.customer_requests import delete_customer, update_customer
-from views.employee_requests import delete_employee, update_employee
-from views.location_requests import delete_location, update_location
+from views import get_all_animals, get_single_animal
+from views import get_all_employees, get_single_employee
+from views import get_all_customers, get_single_customer
+from views import get_all_locations, get_single_location
+
+# from views.animal_requests import delete_animal, update_animal
+# from views.customer_requests import delete_customer, update_customer
+# from views.employee_requests import delete_employee, update_employee
+# from views.location_requests import delete_location, update_location
 
 
 # Here's a class. It inherits from another class.
@@ -142,22 +143,22 @@ class HandleRequests(BaseHTTPRequestHandler):
         # Add a new animal to the list. Don't worry about
         # the orange squiggle, you'll define the create_animal
         # function next.
-        if resource == "animals":
-            new_animal = create_animal(post_body)
-            # Encode the new animal and send in response
-            self.wfile.write(f"{new_animal}".encode())
-        if resource == "employees":
-            new_employee = create_employee(post_body)
-            # Encode the new employee and send in response
-            self.wfile.write(f"{new_employee}".encode())
-        if resource == "locations":
-            new_location = create_location(post_body)
-            # Encode the new location and send in response
-            self.wfile.write(f"{new_location}".encode())
-        if resource == "customers":
-            new_customer = create_customer(post_body)
-            # Encode the new customer and send in response
-            self.wfile.write(f"{new_customer}".encode())
+        # if resource == "animals":
+        #     new_animal = create_animal(post_body)
+        #     # Encode the new animal and send in response
+        #     self.wfile.write(f"{new_animal}".encode())
+        # if resource == "employees":
+        #     new_employee = create_employee(post_body)
+        #     # Encode the new employee and send in response
+        #     self.wfile.write(f"{new_employee}".encode())
+        # if resource == "locations":
+        #     new_location = create_location(post_body)
+        #     # Encode the new location and send in response
+        #     self.wfile.write(f"{new_location}".encode())
+        # if resource == "customers":
+        #     new_customer = create_customer(post_body)
+        #     # Encode the new customer and send in response
+        #     self.wfile.write(f"{new_customer}".encode())
 
         # response = f"received post request:<br>{post_body}"
 
@@ -170,17 +171,17 @@ class HandleRequests(BaseHTTPRequestHandler):
         (resource, id) = self.parse_url(self.path)
 
         # Delete a single animal from the list
-        if resource == "animals":
-            delete_animal(id)
-        if resource == "employees":
-            delete_employee(id)
-        if resource == "customers":
-            delete_customer(id)
-        if resource == "locations":
-            delete_location(id)
+        # if resource == "animals":
+        #     delete_animal(id)
+        # if resource == "employees":
+        #     delete_employee(id)
+        # if resource == "customers":
+        #     delete_customer(id)
+        # if resource == "locations":
+        #     delete_location(id)
 
         # Encode the new animal and send in response
-        self.wfile.write("".encode())
+        # self.wfile.write("".encode())
 
 
     # Here's a method on the class that overrides the parent's method.
@@ -197,17 +198,17 @@ class HandleRequests(BaseHTTPRequestHandler):
         (resource, id) = self.parse_url(self.path)
 
         # Update a single animal from the list
-        if resource == "animals":
-            update_animal(id, post_body)
-        if resource == "employees":
-            update_employee(id, post_body)
-        if resource == "customers":
-            update_customer(id, post_body)
-        if resource == "locations":
-            update_location(id, post_body)
+        # if resource == "animals":
+        #     update_animal(id, post_body)
+        # if resource == "employees":
+        #     update_employee(id, post_body)
+        # if resource == "customers":
+        #     update_customer(id, post_body)
+        # if resource == "locations":
+        #     update_location(id, post_body)
 
         # Encode the new animal and send in response
-        self.wfile.write("".encode())
+        # self.wfile.write("".encode())
 
 
 # This function is not inside the class. It is the starting
