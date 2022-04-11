@@ -4,6 +4,7 @@ from models import Customer
 
 
 def get_all_customers():
+    """get customers list without conditions"""
     # Open a connection to the database
     with sqlite3.connect("./kennel.sqlite3") as conn:
 
@@ -29,7 +30,7 @@ def get_all_customers():
             # exact order of the parameters defined in the
             # Customer class above.
             customer = Customer(row['id'], row['name'], row['address'],
-                            row['email'])
+                            row['email'], row['password'])
 
             customers.append(customer.__dict__)
 
@@ -38,6 +39,7 @@ def get_all_customers():
 
 
 def get_single_customer(id):
+    """Get a customer by id(from param)"""
     with sqlite3.connect("./kennel.sqlite3") as conn:
         conn.row_factory = sqlite3.Row
         db_cursor = conn.cursor()
@@ -56,3 +58,31 @@ def get_single_customer(id):
 
         return json.dumps(customer.__dict__)
 
+
+def get_customers_by_email(email):
+    """Get customer by email"""
+    with sqlite3.connect("./kennel.sqlite3") as conn:
+        conn.row_factory = sqlite3.Row
+        db_cursor = conn.cursor()
+
+        # Write the SQL query to get the information you want
+        db_cursor.execute("""
+        select
+            c.id,
+            c.name,
+            c.address,
+            c.email,
+            c.password
+        from Customer c
+        WHERE c.email = ?
+        """, ( email, ))
+
+        customers = []
+        dataset = db_cursor.fetchall()
+
+        for row in dataset:
+            customer = Customer(row['id'], row['name'], row['address'], row['email'],
+                                row['password'])
+            customers.append(customer.__dict__)
+
+    return json.dumps(customers)
