@@ -28,9 +28,9 @@ def get_all_employees():
                 a.customer_id animal_customer_id,
                 a.location_id animal_location_id
             FROM Employee e
-            JOIN Location l
+            LEFT JOIN Location l
                 ON l.id = e.location_id
-            JOIN Animal a
+            LEFT JOIN Animal a
                 ON a.id = e.animal_id
         """)
 
@@ -137,7 +137,7 @@ def create_employee(new_employee):
         VALUES
             ( ?, ?, ? );
         """, (new_employee['name'], new_employee['address'],
-              new_employee['locationId'], ))
+              new_employee['locationId']))
 
         # The `lastrowid` property on the cursor will return
         # the primary key of the last thing that got added to
