@@ -3,10 +3,12 @@ class Animal():
     special `self` parameter that every method on a class
     needs as the first parameter.
     """
-    def __init__(self, id, name, species, status, location_id, customer_id):
+    def __init__(self, id, name, status, breed, customer_id, location_id):
         self.id = id
         self.name = name
-        self.species = species
-        self.location_id = location_id
-        self.customer_id = customer_id
         self.status = status
+        self.breed = breed
+        self.customer_id = customer_id
+        self.location_id = location_id
+        self.location = None
+        self.customer = None
