@@ -63,3 +63,27 @@ SELECT
     a.customer_id
 FROM animal a
 WHERE a.id = 3
+
+SELECT
+    a.id,
+    a.name,
+    a.breed,
+    a.status,
+    a.location_id,
+    a.customer_id,
+    l.name location_name,
+    l.address location_address
+FROM Animal a
+JOIN Location l
+    ON l.id = a.location_id
+
+SELECT * FROM Animal ORDER BY id DESC;
+
+ALTER TABLE Employee
+ADD COLUMN animal_id;
+
+UPDATE Employee
+SET animal_id = 12;
+
+
+
